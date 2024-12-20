@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+    # MySQL service
+    mysql:
+        image: mysql:8.0
+        container_name: news-db1
+        environment:
+            MYSQL_ROOT_PASSWORD: reza1234
+            MYSQL_DATABASE: news_db
+            MYSQL_USER: news_user
+            MYSQL_PASSWORD: reza1234
+        volumes:
+            - ./data/db:/var/lib/mysql # Save MySQL data
+            - ./backup:/docker-entrypoint-initdb.d # Automatically load SQL files from the backup folder
+        ports:
+            - '3306:3306'
+        networks:
+            - news_network
+
+    # Backend service
+    backend:
+        build:
+            context: ./news_backend
+        container_name: bartadhara-backend1
+        environment:
+            - DB_HOST=news-db
+            - DB_PORT=3306
+            - DB_NAME=news_db
+            - DB_USER=root
+            - DB_PASSWORD=reza1234
+        ports:
+            - '8080:8080'
+        depends_on:
+            - mysql
+        networks:
+            - news_network
+
+    # Frontend service (Nginx)
+    frontend:
+        build:
+            context: ./bartadhara-frontend
+        container_name: bartadhara-frontend1
+        ports:
+            - '80:80'
+        depends_on:
+            - backend
+        networks:
+            - news_network
+        volumes:
+            - ./bartadhara-frontend:/usr/share/nginx/html
+
+networks:
+    news_network:
+        driver: bridge
