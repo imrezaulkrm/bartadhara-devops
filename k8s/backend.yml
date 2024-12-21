@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend-container
+        image: imrezaulkrm/bartadhara:backend-2  # আপনার backend Docker image
+        ports:
+        - containerPort: 8080  # backend service এর পোর্ট
+        volumeMounts:
+        - name: backend-volume
+          mountPath: /app/uploads  # যেখানে ডাটা মাউন্ট হবে
+      volumes:
+      - name: backend-volume
+        persistentVolumeClaim:
+          claimName: backend-pvc  # PVC এর নাম
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 8080  # backend service এর জন্য একটি পোর্ট নির্বাচন
+      targetPort: 8080  # backend container এর পোর্ট
+  type: ClusterIP  # ClusterIP ব্যবহার করা হচ্ছে, LoadBalancer এর পরিবর্তে

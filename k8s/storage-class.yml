@@ -1,5 +1,7 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: manual
-provisioner: kubernetes.io/no-provisioner
+  name: nfs-storage-class
+provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
+reclaimPolicy: Retain
+volumeBindingMode: Immediate

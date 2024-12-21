@@ -8,9 +8,10 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: "manual"
-  hostPath:
-    path: "/home/imrezaulkrm/Desktop/bartadhara-pv/database"  # হোস্ট মেশিনের ডিরেক্টরি
+  storageClassName: nfs-storage-class  # স্টোরেজ ক্লাস নাম পরিবর্তন করুন
+  nfs:
+    server: 192.168.0.108  # আপনার লোকাল মেশিনের IP
+    path: /home/imrezaulkrm/Desktop/bartadhara-pv/database  # আপনার NFS শেয়ার করা ডিরেক্টরি
 
 ---
 apiVersion: v1
@@ -23,6 +24,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
-  storageClassName: "manual"
-  hostPath:
-    path: "/home/imrezaulkrm/Desktop/bartadhara-pv/backend"  # হোস্ট মেশিনের ডিরেক্টরি
+  storageClassName: nfs-storage-class  # স্টোরেজ ক্লাস নাম পরিবর্তন করুন
+  nfs:
+    server: 192.168.0.108  # আপনার লোকাল মেশিনের IP
+    path: /home/imrezaulkrm/Desktop/bartadhara-pv/backend  # আপনার NFS শেয়ার করা ডিরেক্টরি

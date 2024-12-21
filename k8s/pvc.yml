@@ -8,7 +8,7 @@ spec:
   resources:
     requests:
       storage: 2Gi
-  storageClassName: "manual"
+  storageClassName: "nfs-storage-class"
 
 ---
 apiVersion: v1
@@ -21,4 +21,4 @@ spec:
   resources:
     requests:
       storage: 2Gi
-  storageClassName: "manual"
+  storageClassName: "nfs-storage-class"
