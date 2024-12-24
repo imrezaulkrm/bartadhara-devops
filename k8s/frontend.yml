@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  replicas: 1  # আপনি এখানে পডের সংখ্যা নির্ধারণ করতে পারেন
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - name: frontend
+        image: imrezaulkrm/bartadhara:frontend-33 # এখানে আপনার Docker ইমেজের নাম দিন
+        ports:
+        - containerPort: 80   # Nginx বা আপনার অ্যাপ্লিকেশনের পোর্ট
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+  selector:
+    app: frontend
+  ports:
+    - protocol: TCP
+      port: 80          # Kubernetes সার্ভিসের পোর্ট
+      targetPort: 80    # পডের ভিতরের পোর্ট, যেখানে অ্যাপ্লিকেশন চালু হবে
+  type: ClusterIP  # এটা কেবল ক্লাস্টারের ভিতরে অ্যাক্সেসযোগ্য থাকবে

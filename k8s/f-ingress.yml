@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+  namespace: default
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+  - http:
+      paths:
+      - path: /  # ফ্রন্টএন্ডের জন্য রুট পাথ
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend-service
+            port:
+              number: 80  # ফ্রন্টএন্ড সার্ভিসের পোর্ট

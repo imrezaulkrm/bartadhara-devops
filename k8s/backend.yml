@@ -19,7 +19,7 @@ spec:
         - containerPort: 8080  # backend service এর পোর্ট
         volumeMounts:
         - name: backend-volume
-          mountPath: /app/uploads  # যেখানে ডাটা মাউন্ট হবে
+          mountPath: /root/uploads  # যেখানে ডাটা মাউন্ট হবে
       volumes:
       - name: backend-volume
         persistentVolumeClaim:
