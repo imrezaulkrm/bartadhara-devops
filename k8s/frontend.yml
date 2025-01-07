@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: imrezaulkrm/bartadhara:frontend-33 # এখানে আপনার Docker ইমেজের নাম দিন
+        image: imrezaulkrm/bartadhara:frontend-7
         ports:
         - containerPort: 80   # Nginx বা আপনার অ্যাপ্লিকেশনের পোর্ট
 ---
