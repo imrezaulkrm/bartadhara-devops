@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: backend-container
-        image: imrezaulkrm/bartadhara:2
+        image: imrezaulkrm/bartadhara:backend3
         ports:
         - containerPort: 8080  # backend service এর পোর্ট
         volumeMounts:
