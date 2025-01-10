@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: imrezaulkrm/bartadhara:frontend-8
+        image: imrezaulkrm/bartadhara:frontend-12
         ports:
         - containerPort: 80   # Nginx বা আপনার অ্যাপ্লিকেশনের পোর্ট
 ---
