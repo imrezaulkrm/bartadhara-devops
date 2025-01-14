@@ -10,7 +10,7 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs-storage-class  # স্টোরেজ ক্লাস নাম পরিবর্তন করুন
   nfs:
-    server: 192.168.0.108  # আপনার লোকাল মেশিনের IP
+    server: 192.168.0.113  # আপনার লোকাল মেশিনের IP
     path: /home/imrezaulkrm/Desktop/bartadhara-pv/database  # আপনার NFS শেয়ার করা ডিরেক্টরি
 
 ---
@@ -26,5 +26,5 @@ spec:
   persistentVolumeReclaimPolicy: Retain
   storageClassName: nfs-storage-class  # স্টোরেজ ক্লাস নাম পরিবর্তন করুন
   nfs:
-    server: 192.168.0.108  # আপনার লোকাল মেশিনের IP
+    server: 192.168.0.110  # আপনার লোকাল মেশিনের IP
     path: /home/imrezaulkrm/Desktop/bartadhara-pv/backend  # আপনার NFS শেয়ার করা ডিরেক্টরি
